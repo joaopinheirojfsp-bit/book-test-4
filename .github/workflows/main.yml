@@ -19,6 +19,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      - name: Remover exigência de keystore de debug no Gradle
+        run: |
+          find . -name "build.gradle.kts" -exec sed -i 's/signingConfig = signingConfigs.getByName("debugConfig")//g' {} +
+
       - name: Dar permissões ao Gradle Wrapper
         run: chmod +x gradlew
 
